@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -7,26 +6,59 @@ public static class LightCaster {
 
 	private static readonly float MAX_CAST_DISTANCE = 10f;
 
-	public static void CastLight(LightRay lightRay) {
-		RaycastHit2D hit = Physics2D.Raycast(lightRay.origin, lightRay.direction, MAX_CAST_DISTANCE);
-		if (hit) {
-			//Light2D light = new GameObject().AddComponent<Light2D>();
-			/*SpriteRenderer light = new GameObject().AddComponent<SpriteRenderer>();
-			light.transform.position = lightRay.position;
-			light.transform.localScale.x = Vector3.Distance(lightRay.position, hit.point);*/
-			Debug.DrawLine(lightRay.origin, hit.point, lightRay.color, Mathf.Infinity);
-			if(!hit.collider.CompareTag("StopRaycast")) {
-				Reflectable reflectable = hit.collider.gameObject.GetComponentInParent<Reflectable>();
-				if (reflectable != null) {
-					LightRay reflection = reflectable.Reflect(lightRay);
-					CastLight(reflection);
-					return;
+	public static List<GameObject> CastLight(LightRay lightRay, int bounceLimit) {
+		List<GameObject> lights = new List<GameObject>();
+		if(bounceLimit > 0) {
+			RaycastHit2D hit = Physics2D.Raycast(lightRay.origin, lightRay.direction, MAX_CAST_DISTANCE, LayerMask.GetMask("Light"));
+			if(hit) {
+				Debug.DrawLine(lightRay.origin, hit.point, Color.red, Mathf.Infinity);
+
+				lights.Add(InstantiateLightEffect(lightRay, hit.point));
+
+				if(!hit.collider.CompareTag("StopRaycast")) {
+					Reflectable reflectable = hit.collider.gameObject.GetComponentInParent<Reflectable>();
+					if(reflectable != null) {
+						LightRay reflection = reflectable.Reflect(lightRay);
+						lights.AddRange(CastLight(reflection, bounceLimit - 1));
+					}
+				} else {
+					Crystal crystal;
+					if(hit.collider.gameObject.TryGetComponent(out crystal)) {
+						if(lightRay.color == crystal.color) {
+							crystal.Activate();
+						}
+					}
 				}
+
+				return lights;
+			} else {
+				Debug.DrawLine(lightRay.origin, lightRay.origin + lightRay.direction * 10, Color.blue, Mathf.Infinity);
+				lights.Add(InstantiateLightEffect(lightRay, lightRay.origin + lightRay.direction * 10));
+				//Debug.DrawRay(lightRay.origin, lightRay.direction * MAX_CAST_DISTANCE, lightRay.color, 10f);
+				return lights;
 			}
 		} else {
-			Debug.DrawLine(lightRay.origin, lightRay.origin + lightRay.direction * 10, Color.blue, Mathf.Infinity);
-			//Debug.DrawRay(lightRay.origin, lightRay.direction * MAX_CAST_DISTANCE, lightRay.color, 10f);
-			return;
+			return lights;
+		}
+	}
+
+	private static GameObject InstantiateLightEffect(LightRay ray, Vector3 endPoint) {
+		float dist = Vector3.Distance(ray.origin, endPoint);
+		GameObject lightBeam = Resources.Load("LightBeam") as GameObject;
+		lightBeam.transform.localScale = new Vector3(dist, 0.25f);
+		lightBeam.transform.position = Vector3.Lerp(ray.origin, endPoint, 0.5f);
+		lightBeam.transform.eulerAngles = new Vector3(0f, 0f, VectorToAngle(ray.direction));
+		//Vector3.RotateTowards(lightBeam.transform.rotation., ray.direction, Mathf.PI, 0f);
+		lightBeam.GetComponent<Light2D>().color = ray.color;
+		return GameObject.Instantiate(lightBeam);
+	}
+
+	private static float VectorToAngle(Vector3 direction) {
+		float r = Mathf.Acos(Vector3.Dot(direction.normalized, Vector3.right)) * Mathf.Rad2Deg;
+		if(direction.y >= 0f) {
+			return r;
+		} else {
+			return -r;
 		}
 	}
 }

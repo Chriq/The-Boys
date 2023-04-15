@@ -6,8 +6,16 @@ public class MovementController : MonoBehaviour {
 	public float speed;
 	public Animator animator;
 	public Vector3 spriteOffset;
+	public SpriteRenderer sprite;
 
 	private bool isMoving;
+	public Vector3 currentDirection;
+
+	private RandomizeAudio audioPlayer;
+
+	private void Awake() {
+		audioPlayer = GetComponent<RandomizeAudio>();
+	}
 
 	public void Move(Vector2 input) {
 		if (!isMoving) {
@@ -19,15 +27,27 @@ public class MovementController : MonoBehaviour {
 			}*/
 
 			if(input != Vector2.zero) {
+				currentDirection = input;
+
+				if(input.x > 0) {
+					sprite.flipX = false;
+				} else if(input.x < 0) {
+					sprite.flipX = true;
+				}
+
 				Vector3 targetPos = transform.position;
 				targetPos.x += input.x;
 				targetPos.y += input.y;
 
-				animator.SetFloat("horizontal", input.x);
-				animator.SetFloat("vertical", input.y);
-
-				if(!IsTileOccupied(targetPos)) {
+				GameObject collision = IsTileOccupied(targetPos);
+				if(!collision) {
+					audioPlayer.PlayAudio();
 					StartCoroutine(MoveToCell(targetPos));
+				} else {
+					Pushable pushable;
+					if(pushable = collision.GetComponentInParent<Pushable>()) {
+						pushable.Push(input, speed);
+					}
 				}
 			}
 		}
@@ -44,6 +64,7 @@ public class MovementController : MonoBehaviour {
 
 		transform.position = targetPos;
 		isMoving = false;
+		animator.SetBool("isMoving", isMoving);
 	}
 
 	private void Interact(Vector3 checkPos) {
@@ -57,13 +78,13 @@ public class MovementController : MonoBehaviour {
 		}
 	}
 
-	private bool IsTileOccupied(Vector3 targetPos) {
+	private GameObject IsTileOccupied(Vector3 targetPos) {
 		Vector3 posWithOffset = targetPos + spriteOffset;
 		Collider2D col;
-		if(col = Physics2D.OverlapCircle(posWithOffset, 0.3f)) {
-			return true;
+		if(col = Physics2D.OverlapCircle(posWithOffset, 0.3f, LayerMask.GetMask("Physical"))) {
+			return col.gameObject;
 		}
 
-		return false;
+		return null;
 	}
 }

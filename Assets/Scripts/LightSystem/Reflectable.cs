@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Reflectable : MonoBehaviour {
 	public float surfaceAngle;
-	public Color color;
+	public Color color = Color.white;
 	public Transform reflectionSpawn;
+	public SpriteRenderer mirror;
+
+	private void Awake() {
+		mirror.color = color;
+	}
 
 	public LightRay Reflect(LightRay incomingLight) {
 		Vector3 surfaceNormal = GetNormal(GetAngleAsVector(surfaceAngle));
