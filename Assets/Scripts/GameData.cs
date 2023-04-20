@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameData : MonoBehaviour {
 	public Dictionary<string, bool> doorKeys;
 	public Dictionary<string, bool> completedRooms;
+	public bool isPlayerChased = false;
+	public string lastRoomCompleted = "";
 
 	private static GameData _instance;
 	public static GameData Instance {
@@ -28,7 +30,7 @@ public class GameData : MonoBehaviour {
 				{"Bedroom", false },
 				{"Bathroom", false },
 				{"Basement", false },
-				{"Fridge", false }
+				{"Kitchen Fridge", false }
 			};
 
 			completedRooms = new Dictionary<string, bool> {

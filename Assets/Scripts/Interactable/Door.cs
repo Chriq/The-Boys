@@ -9,13 +9,16 @@ public class Door : MonoBehaviour, Interactable {
 	public Sprite openSprite;
 	public Sprite closedSprite;
 	private RandomizeAudio audioPlayer;
+	private DialogPrompter dialog;
+
 	private void Start() {
-		if(GameData.Instance.doorKeys[sceneName]) {
+		if(GameData.Instance.doorKeys.ContainsKey(sceneName) && GameData.Instance.doorKeys[sceneName]) {
 			isLocked = false;
 			GetComponent<SpriteRenderer>().sprite = openSprite;
 		} else {
 			isLocked = true;
 			GetComponent<SpriteRenderer>().sprite = closedSprite;
+			dialog = gameObject.GetComponent<DialogPrompter>();
 		}
 
 		audioPlayer = GetComponent<RandomizeAudio>();
@@ -24,10 +27,11 @@ public class Door : MonoBehaviour, Interactable {
 	public void Interact() {
 		if(!isLocked) {
 			SceneManager.LoadScene(sceneName);
-		} else if(GameData.Instance.doorKeys[sceneName]) {
+		} else if(GameData.Instance.doorKeys.ContainsKey(sceneName) && GameData.Instance.doorKeys[sceneName]) {
 			GetComponent<SpriteRenderer>().sprite = openSprite;
 			SceneManager.LoadScene(sceneName);
 		} else {
+			dialog.DisplayTextUI();
 			audioPlayer.PlayAudio();
 		}
 	}

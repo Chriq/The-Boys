@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 949352028}
   - component: {fileID: 419363338400425330}
+  - component: {fileID: 7465616961634453924}
   m_Layer: 6
   m_Name: MovementCollider
   m_TagString: Untagged
@@ -58,6 +59,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7465616961634453924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949352027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41286559fd9aeed4aad4e14bbeccee62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: 
+  fadeSpeed: 0.5
+  textSpeed: 0.03
+  displaySeconds: 4
 --- !u!1 &5507125213223856927
 GameObject:
   m_ObjectHideFlags: 0

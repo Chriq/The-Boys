@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 158328856970961904}
   - component: {fileID: 6298819345687808776}
   - component: {fileID: 7302731277013624980}
+  - component: {fileID: -6026327715896739056}
   m_Layer: 6
   m_Name: Key
   m_TagString: Untagged
@@ -126,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 0}
+  sceneName: 
 --- !u!114 &7302731277013624980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,3 +207,19 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &-6026327715896739056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2694226521304828954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41286559fd9aeed4aad4e14bbeccee62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: 
+  fadeSpeed: 0.5
+  textSpeed: 0.03
+  displaySeconds: 4

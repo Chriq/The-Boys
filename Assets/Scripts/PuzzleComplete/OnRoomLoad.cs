@@ -13,4 +13,12 @@ public class OnRoomLoad : MonoBehaviour {
 			}
 		}
 	}
+
+	public void ResetPuzzle() {
+
+	}
+
+	public void AutoSolvePuzzle() {
+
+	}
 }

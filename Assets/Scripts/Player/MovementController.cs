@@ -9,23 +9,19 @@ public class MovementController : MonoBehaviour {
 	public SpriteRenderer sprite;
 
 	private bool isMoving;
+	public Vector3 currentPosition;
 	public Vector3 currentDirection;
 
 	private RandomizeAudio audioPlayer;
 
 	private void Awake() {
+		currentPosition = transform.position;
+		currentDirection = transform.up;
 		audioPlayer = GetComponent<RandomizeAudio>();
 	}
 
 	public void Move(Vector2 input) {
 		if (!isMoving) {
-			/*if(Input.GetKeyDown(KeyCode.E)) {
-				Vector3 targetPos = transform.position;
-				targetPos.x += animator.GetFloat("horizontal");
-				targetPos.y += animator.GetFloat("vertical");
-				Interact(targetPos);
-			}*/
-
 			if(input != Vector2.zero) {
 				currentDirection = input;
 
@@ -42,6 +38,7 @@ public class MovementController : MonoBehaviour {
 				GameObject collision = IsTileOccupied(targetPos);
 				if(!collision) {
 					audioPlayer.PlayAudio();
+					currentPosition = targetPos;
 					StartCoroutine(MoveToCell(targetPos));
 				} else {
 					Pushable pushable;
