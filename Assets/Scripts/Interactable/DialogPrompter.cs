@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using System;
+using System.Collections.Generic;
 
 public class DialogPrompter : MonoBehaviour, Interactable {
 	public string text;
@@ -9,7 +10,7 @@ public class DialogPrompter : MonoBehaviour, Interactable {
 	public float textSpeed = 0.03f;
 	public float displaySeconds = 4f;
 
-	private TextMeshProUGUI dialog;
+	public TextMeshProUGUI dialog;
 	private UIFade fade;
 
 	private void Start() {
@@ -39,6 +40,20 @@ public class DialogPrompter : MonoBehaviour, Interactable {
 		}
 	}
 
+	public void DisplayTextSequenceUI(List<TextLine> list) {
+		dialog.text = "";
+		fade.FadeOutWithCallback(delegate {
+			StartCoroutine(DisplayTextSequence(list));
+		});
+	}
+
+	public void DisplayTextSequenceUIWithCallback(List<TextLine> list, Action action) {
+		dialog.text = "";
+		fade.FadeOutWithCallback(delegate {
+			StartCoroutine(DisplayTextSequenceWithCallback(list, action));
+		});
+	}
+
 	IEnumerator DisplayText() {
 		for(int i = 0; i < text.Length; i++) {
 			dialog.text = dialog.text + text[i];
@@ -60,4 +75,41 @@ public class DialogPrompter : MonoBehaviour, Interactable {
 
 		UIManager.Instance.dialogCanvas.GetComponent<UIFade>().FadeOutWithCallback(action, fadeSpeed);
 	}
+
+	IEnumerator DisplayTextSequence(List<TextLine> list) {
+		foreach(TextLine line in list) {
+			dialog.text = "";
+			dialog.color = line.color;
+
+			for(int i = 0; i < line.text.Length; i++) {
+				dialog.text = dialog.text + line.text[i];
+				yield return new WaitForSeconds(textSpeed);
+			}
+
+			yield return new WaitForSeconds(displaySeconds);
+		}
+
+		UIManager.Instance.dialogCanvas.GetComponent<UIFade>().FadeIn(fadeSpeed);
+	}
+
+	IEnumerator DisplayTextSequenceWithCallback(List<TextLine> list, Action action) {
+		foreach(TextLine line in list) {
+			dialog.text = "";
+			dialog.color = line.color;
+
+			for(int i = 0; i < line.text.Length; i++) {
+				dialog.text = dialog.text + line.text[i];
+				yield return new WaitForSeconds(textSpeed);
+			}
+
+			yield return new WaitForSeconds(displaySeconds);
+		}
+
+		UIManager.Instance.dialogCanvas.GetComponent<UIFade>().FadeInWithCallback(action, fadeSpeed);
+	}
+}
+
+public struct TextLine {
+	public string text;
+	public Color color;
 }

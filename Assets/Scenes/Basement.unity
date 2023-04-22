@@ -2449,6 +2449,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1690977524235086216, guid: ebf304d811ddfb04ebf916022c210195, type: 3}
+      propertyPath: crystal
+      value: 
+      objectReference: {fileID: 1778056537}
     - target: {fileID: 2769367014605088849, guid: ebf304d811ddfb04ebf916022c210195, type: 3}
       propertyPath: m_Name
       value: UI
@@ -2588,6 +2592,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc94bbb905a7b884c8027e2d1e3a0e80, type: 3}
+--- !u!114 &1778056537 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3783573511905464526, guid: dc94bbb905a7b884c8027e2d1e3a0e80, type: 3}
+  m_PrefabInstance: {fileID: 1778056536}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179103582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6435f6263dd28241a740cb0f2029700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1782284233
 GameObject:
   m_ObjectHideFlags: 0
@@ -2710,6 +2725,7 @@ MonoBehaviour:
   - {fileID: 1931521056}
   - {fileID: 729534563}
   - {fileID: 2006443688}
+  playerSpawns: []
 --- !u!4 &1834919255
 Transform:
   m_ObjectHideFlags: 0

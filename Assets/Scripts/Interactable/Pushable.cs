@@ -15,6 +15,10 @@ public class Pushable : MonoBehaviour {
 				StartCoroutine(MoveToCell(targetPos, speed));
 			}
 		}
+
+		if(UIManager.Instance.puzzleCanvas.GetComponent<CanvasGroup>().alpha == 0) {
+			UIManager.Instance.puzzleCanvas.GetComponent<UIFade>().FadeIn();
+		}
     }
 
 	IEnumerator MoveToCell(Vector3 targetPos, float speed) {

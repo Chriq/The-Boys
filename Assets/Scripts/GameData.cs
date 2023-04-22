@@ -7,6 +7,7 @@ public class GameData : MonoBehaviour {
 	public Dictionary<string, bool> completedRooms;
 	public bool isPlayerChased = false;
 	public string lastRoomCompleted = "";
+	public string lastRoomIn = "";
 
 	private static GameData _instance;
 	public static GameData Instance {

@@ -7,6 +7,9 @@ public class LoadScene : MonoBehaviour, Interactable {
 	public string sceneName;
 
 	public void Interact() {
-		SceneManager.LoadScene(sceneName);
+        GameData.Instance.lastRoomIn = SceneManager.GetActiveScene().name;
+		UIManager.Instance.fadeCanvas.GetComponent<UIFade>().FadeOutWithCallback(delegate {
+			SceneManager.LoadScene(sceneName);
+		});
 	}
 }
