@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractionController : MonoBehaviour {
+	public GameObject playerLight;
 	public bool isPlayerHidden = false;
 
 	private Vector3 spriteOffset = new Vector3(0.5f, -0.5f);
@@ -36,11 +37,13 @@ public class InteractionController : MonoBehaviour {
 	}
 
 	public void ShineFlashlight(Vector3 dir) {
+		playerLight.SetActive(true);
 		LightRay light = new LightRay(transform.position + spriteOffset, dir, Color.white);
 		lights = LightCaster.CastLight(light, 8);
 	}
 
 	public void TurnOffFlashlight() {
+		playerLight.SetActive(false);
 		foreach(GameObject l in lights) {
 			Destroy(l);
 		}

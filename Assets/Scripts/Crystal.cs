@@ -23,7 +23,7 @@ public class Crystal : MonoBehaviour {
 		if(onRoomComplete != null) {
 			onRoomComplete.Execute();
 		}
-
+		UIManager.Instance.puzzleCanvas.GetComponent<UIFade>().FadeOut();
 		Destroy(gameObject);
 	}
 }

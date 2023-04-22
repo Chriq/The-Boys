@@ -17,7 +17,7 @@ public class Fridge : MonoBehaviour, Interactable {
 	}
 
 	public void Interact() {
-		if(!GameData.Instance.doorKeys["Kitchen Fridge"]) {
+		if(GameData.Instance.doorKeys["Kitchen Fridge"]) {
 			GetComponent<SpriteRenderer>().sprite = openSprite;
 			GetComponentInChildren<Light2D>().enabled = true;
 			dialog.text = "Huh? A can of beans? How is this supposed to help me escape!";
