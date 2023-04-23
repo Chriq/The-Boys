@@ -26,13 +26,13 @@ public class Door : MonoBehaviour, Interactable {
 
 	public void Interact() {
 		if(!isLocked) {
-			GameData.Instance.lastRoomIn = SceneManager.GetActiveScene().name;
+			//GameData.Instance.lastRoomIn = SceneManager.GetActiveScene().name;
 			UIManager.Instance.fadeCanvas.GetComponent<UIFade>().FadeOutWithCallback(delegate {
 				SceneManager.LoadScene(sceneName);
 			});
 		} else if(GameData.Instance.doorKeys.ContainsKey(sceneName) && GameData.Instance.doorKeys[sceneName]) {
 			GetComponent<SpriteRenderer>().sprite = openSprite;
-			GameData.Instance.lastRoomIn = SceneManager.GetActiveScene().name;
+			//GameData.Instance.lastRoomIn = SceneManager.GetActiveScene().name;
 			UIManager.Instance.fadeCanvas.GetComponent<UIFade>().FadeOutWithCallback(delegate {
 				SceneManager.LoadScene(sceneName);
 			});

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Pushable : MonoBehaviour {
 
@@ -16,8 +17,10 @@ public class Pushable : MonoBehaviour {
 			}
 		}
 
-		if(UIManager.Instance.puzzleCanvas.GetComponent<CanvasGroup>().alpha == 0) {
+		if(UIManager.Instance.puzzleCanvas.GetComponent<CanvasGroup>().alpha == 0 && 
+		   GameData.Instance.lastRoomCompleted != SceneManager.GetActiveScene().name) {
 			UIManager.Instance.puzzleCanvas.GetComponent<UIFade>().FadeIn();
+			UIManager.Instance.puzzleCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
 		}
     }
 

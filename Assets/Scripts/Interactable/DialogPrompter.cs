@@ -8,7 +8,7 @@ public class DialogPrompter : MonoBehaviour, Interactable {
 	public string text;
 	public float fadeSpeed = 0.5f;
 	public float textSpeed = 0.03f;
-	public float displaySeconds = 4f;
+	public float displaySeconds = 2f;
 
 	public TextMeshProUGUI dialog;
 	private UIFade fade;

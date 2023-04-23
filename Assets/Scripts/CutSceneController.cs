@@ -69,7 +69,7 @@ public class CutSceneController : MonoBehaviour {
 		line.color = new Color32(131, 39, 39, 255);
 		dialogList.Add(line);
 
-		line.text = "Wait, you guys aren't horrible demons trying to devour my soul?";
+		line.text = "Wait, who are you? You guys aren't horrible demons trying to devour my soul?";
 		line.color = Color.white;
 		dialogList.Add(line);
 
@@ -89,7 +89,15 @@ public class CutSceneController : MonoBehaviour {
 		line.color = Color.white;
 		dialogList.Add(line);
 
-		line.text = "But what's up with the creepy piano music that's been playing since I got here?";
+		line.text = "They challenged me to stay here till 2AM so I can join their club.";
+		line.color = Color.white;
+		dialogList.Add(line);
+
+		line.text = "That's kind of weird, but I get it.";
+		line.color = new Color32(131, 39, 39, 255);
+		dialogList.Add(line);
+
+		line.text = "Yeah. So what's up with the creepy piano music that's been playing since I got here?";
 		line.color = Color.white;
 		dialogList.Add(line);
 
@@ -98,6 +106,10 @@ public class CutSceneController : MonoBehaviour {
 		dialogList.Add(line);
 
 		line.text = "...Well I just feel silly, haha. I think I should head out, my friends will be here soon, anyway. Sorry to bother you!";
+		line.color = Color.white;
+		dialogList.Add(line);
+
+		line.text = "Sorry to bother you!";
 		line.color = Color.white;
 		dialogList.Add(line);
 
@@ -128,11 +140,19 @@ public class CutSceneController : MonoBehaviour {
 		line.color = Color.white;
 		dialogList.Add(line);
 
+		line.text = "Oh, that's just our portal to the Dark Lord so we can get our eternal supply of beans!";
+		line.color = new Color32(131, 39, 39, 255);
+		dialogList.Add(line);
+
+		line.text = "................................................................What?";
+		line.color = Color.white;
+		dialogList.Add(line);
+
 		line.text = "...";
 		line.color = new Color32(131, 39, 39, 255);
 		dialogList.Add(line);
 
-		line.text = "He's onto us";
+		line.text = "We've said too much";
 		line.color = new Color32(131, 39, 39, 255);
 		dialogList.Add(line);
 

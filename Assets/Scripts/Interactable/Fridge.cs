@@ -20,14 +20,15 @@ public class Fridge : MonoBehaviour, Interactable {
 		if(GameData.Instance.doorKeys["Kitchen Fridge"]) {
 			GetComponent<SpriteRenderer>().sprite = openSprite;
 			GetComponentInChildren<Light2D>().enabled = true;
-			dialog.text = "Huh? A can of beans? How is this supposed to help me escape!";
-			StartCoroutine(CloseFridge());
+			dialog.text = "Huh? A can of beans? I've been galavanting around this creepy house for beans!";
+			dialog.DisplayTextUIWithCallback(delegate {
+				StartCoroutine(CloseFridge());
+			});
 		} else {
 			dialog.text = "Why is the fridge locked?";
 			audioPlayer.PlayAudio();
+			dialog.DisplayTextUI();
 		}
-
-		dialog.DisplayTextUI();
 	}
 
 	IEnumerator CloseFridge() {

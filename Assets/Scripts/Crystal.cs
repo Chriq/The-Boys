@@ -9,7 +9,7 @@ public class Crystal : MonoBehaviour {
 	private OnRoomComplete onRoomComplete;
 
 	private void Awake() {
-		GetComponent<Light2D>().color = color;
+		GetComponent<SpriteRenderer>().color = color;
 		transform.GetChild(0).GetComponent<Light2D>().color = color;
 		if(onRoomCompleteObj != null ) {
 			onRoomComplete = onRoomCompleteObj.GetComponent<OnRoomComplete>();
@@ -24,6 +24,7 @@ public class Crystal : MonoBehaviour {
 			onRoomComplete.Execute();
 		}
 		UIManager.Instance.puzzleCanvas.GetComponent<UIFade>().FadeOut();
+		UIManager.Instance.puzzleCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
 		Destroy(gameObject);
 	}
 }

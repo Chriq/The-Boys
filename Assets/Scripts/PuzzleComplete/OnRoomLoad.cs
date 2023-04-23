@@ -26,15 +26,19 @@ public class OnRoomLoad : MonoBehaviour {
 			switch(GameData.Instance.lastRoomIn) {
 				case "Kitchen":
 					player.transform.position = playerSpawns[0].position + new Vector3(-0.5f, 0.5f);
+					player.GetComponent<MovementController>().currentPosition = playerSpawns[0].position + new Vector3(-0.5f, 0.5f);
 					break;
 				case "Bedroom":
 					player.transform.position = playerSpawns[1].position + new Vector3(-0.5f, 0.5f);
+					player.GetComponent<MovementController>().currentPosition = playerSpawns[1].position + new Vector3(-0.5f, 0.5f);
 					break;
 				case "Bathroom":
 					player.transform.position = playerSpawns[2].position + new Vector3(-0.5f, 0.5f);
+					player.GetComponent<MovementController>().currentPosition = playerSpawns[2].position + new Vector3(-0.5f, 0.5f);
 					break;
 				case "Basement":
 					player.transform.position = playerSpawns[3].position + new Vector3(-0.5f, 0.5f);
+					player.GetComponent<MovementController>().currentPosition = playerSpawns[3].position + new Vector3(-0.5f, 0.5f);
 					break;
 				default:
 					break;
