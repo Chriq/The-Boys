@@ -13,7 +13,7 @@ public class CutSceneController : MonoBehaviour {
 
 	private InputController playerInput;
 	private Color ogLightColor;
-	private DialogPrompter dialog;
+	private DialogManager dialog;
 
 	private GameObject enemy1;
 	private GameObject enemy2;
@@ -21,16 +21,17 @@ public class CutSceneController : MonoBehaviour {
 
 	private void Start() {
 		playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<InputController>();
-		dialog = GetComponent<DialogPrompter>();
+		dialog = UIManager.Instance.dialogManager;
 		ogLightColor = globalLight.color;
 	}
 
 	public void Execute() {
-		playerInput.enabled = false;
 		StartCoroutine(SpwanEnemies());
     }
 
 	IEnumerator SpwanEnemies() {
+		playerInput.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+
 		enemy1 = Instantiate(enemyPrefab);
 		enemy1.transform.position = enemySpawn.position + new Vector3(-0.5f, 0.5f);
 		enemy1.GetComponent<AIController>().enabled = false;
@@ -65,6 +66,11 @@ public class CutSceneController : MonoBehaviour {
 
 		List<TextLine> dialogList = new List<TextLine>();
 		TextLine line = new TextLine();
+
+		line.text = "Oh man, it's so bright in here. It's burning my eyes.";
+		line.color = new Color32(131, 39, 39, 255);
+		dialogList.Add(line);
+
 		line.text = "Hey, you got the beans! You here for dinner?";
 		line.color = new Color32(131, 39, 39, 255);
 		dialogList.Add(line);
@@ -85,7 +91,7 @@ public class CutSceneController : MonoBehaviour {
 		line.color = new Color32(131, 39, 39, 255);
 		dialogList.Add(line);
 
-		line.text = "Oh, that's fair. My friends said this place was abandoned, and they challenged me to stay here till 2AM.";
+		line.text = "Oh, that's fair. My friends said this place was abandoned.";
 		line.color = Color.white;
 		dialogList.Add(line);
 
@@ -101,11 +107,15 @@ public class CutSceneController : MonoBehaviour {
 		line.color = Color.white;
 		dialogList.Add(line);
 
-		line.text = "Oh, that's just my old player piano up in the attic. It's a bit out of tune, and sometimes it just starts on it's own.";
+		line.text = "Oh, that's just my old player piano up in the attic.";
 		line.color = new Color32(131, 39, 39, 255);
 		dialogList.Add(line);
 
-		line.text = "...Well I just feel silly, haha. I think I should head out, my friends will be here soon, anyway. Sorry to bother you!";
+		line.text = "It's a bit out of tune, and sometimes it just starts on it's own.";
+		line.color = new Color32(131, 39, 39, 255);
+		dialogList.Add(line);
+
+		line.text = "...Well I just feel silly, haha. I think I should head out, my friends will be here soon, anyway.";
 		line.color = Color.white;
 		dialogList.Add(line);
 
@@ -113,14 +123,12 @@ public class CutSceneController : MonoBehaviour {
 		line.color = Color.white;
 		dialogList.Add(line);
 
-		dialog.displaySeconds = 2f;
-		dialog.DisplayTextSequenceUIWithCallback(dialogList, delegate {
+		UIManager.Instance.dialogManager.DisplayTextSequenceUIWithCallback(dialogList, delegate {
 			StartCoroutine(PlayerEscape());
 		});		
 	}
 
 	IEnumerator PlayerEscape() {
-		enemy3.GetComponent<MovementController>().Move(new Vector2(-1f, 0f));
 		MovementController playerMovement = playerInput.GetComponent<MovementController>();
 		playerMovement.Move(new Vector2(-1f, 0f));
 		yield return new WaitForSeconds(0.9f);
@@ -144,7 +152,7 @@ public class CutSceneController : MonoBehaviour {
 		line.color = new Color32(131, 39, 39, 255);
 		dialogList.Add(line);
 
-		line.text = "................................................................What?";
+		line.text = "................................................................what?";
 		line.color = Color.white;
 		dialogList.Add(line);
 
@@ -156,15 +164,13 @@ public class CutSceneController : MonoBehaviour {
 		line.color = new Color32(131, 39, 39, 255);
 		dialogList.Add(line);
 
-		dialog.DisplayTextSequenceUIWithCallback(dialogList, delegate {
+		UIManager.Instance.dialogManager.DisplayTextSequenceUIWithCallback(dialogList, delegate {
 			StartCoroutine(GoToEnd());
 		});
-
-		
 	}
 
 	IEnumerator GoToEnd() {
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.25f);
 
 		globalLight.intensity = 0.2f;
 		globalLight.color = ogLightColor;
@@ -174,7 +180,7 @@ public class CutSceneController : MonoBehaviour {
 		enemy2.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = ogEnemySprite;
 		enemy3.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = ogEnemySprite;
 
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.25f);
 		SceneManager.LoadScene("End");
 	}
 }

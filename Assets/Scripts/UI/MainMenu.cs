@@ -47,7 +47,7 @@ public class MainMenu : MonoBehaviour {
 		lines.Add(line);
 
 		StartCoroutine(StartCrickets());
-		DialogPrompter dialog = dialogCanvas.GetComponent<DialogPrompter>();
+		DialogManager dialog = dialogCanvas.GetComponent<DialogManager>();
 		dialog.DisplayTextSequenceUIWithCallback(lines, delegate {
 			StartCoroutine(RestartMusic(delegate {
 				SceneManager.LoadScene("Hall");

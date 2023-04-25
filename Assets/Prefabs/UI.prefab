@@ -178,6 +178,7 @@ MonoBehaviour:
   dialogCanvas: {fileID: 2769367016555087421}
   puzzleCanvas: {fileID: 2769367015369368254}
   fadeCanvas: {fileID: 2452806053963531292}
+  dialogManager: {fileID: 8981840899032020510}
 --- !u!1 &2769367015172040921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,6 +1085,7 @@ GameObject:
   - component: {fileID: 2769367016555087418}
   - component: {fileID: 2769367016555087398}
   - component: {fileID: 2769367016555087399}
+  - component: {fileID: 8981840899032020510}
   m_Layer: 5
   m_Name: DialogCanvas
   m_TagString: Untagged
@@ -1198,6 +1200,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 2769367016555087398}
+--- !u!114 &8981840899032020510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2769367016555087421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9620603366fb7274da2d7835dc178d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: 
+  fadeSpeed: 0.5
+  textSpeed: 0.03
+  displaySeconds: 2
+  dialog: {fileID: 2769367015172040903}
 --- !u!1 &2769367016593452449
 GameObject:
   m_ObjectHideFlags: 0

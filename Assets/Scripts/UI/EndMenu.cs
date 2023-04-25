@@ -24,6 +24,7 @@ public class EndMenu : MonoBehaviour {
 	}
 
 	public void Retry() {
+		GameData.Instance.isPlayerChased = false;
 		SceneManager.LoadScene(GameData.Instance.lastRoomIn);
 	}
 }

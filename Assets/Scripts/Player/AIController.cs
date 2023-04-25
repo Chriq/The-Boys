@@ -7,8 +7,10 @@ public class AIController : MonoBehaviour {
 	public MovementController movementController;
 
 	private bool seesPlayer = true;
+	public bool burned = false;
 	private GameObject player;
 	private float timer;
+	public AudioSource burn;
 
 	private void Start() {
 		player = GameObject.FindGameObjectWithTag("Player");
@@ -20,7 +22,7 @@ public class AIController : MonoBehaviour {
 	}
 
 	private void Update() {
-		if(seesPlayer) {
+		if(seesPlayer && !burned) {
 			Vector3 playerPosition = player.GetComponent<MovementController>().currentPosition;
 			Vector3 dir = playerPosition - transform.position;
 
@@ -65,5 +67,16 @@ public class AIController : MonoBehaviour {
 		} else {
 			timer = 0f;
 		}
+	}
+
+	public void AIBurned() {
+		burned = true;
+		burn.Play();
+		StartCoroutine(StopPursuit());
+	}
+
+	IEnumerator StopPursuit() {
+		yield return new WaitForSeconds(1f);
+		burned = false;
 	}
 }

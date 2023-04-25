@@ -37,7 +37,7 @@ public class Door : MonoBehaviour, Interactable {
 				SceneManager.LoadScene(sceneName);
 			});
 		} else {
-			dialog.DisplayTextUI();
+			dialog.Interact();
 			audioPlayer.PlayAudio();
 		}
 	}

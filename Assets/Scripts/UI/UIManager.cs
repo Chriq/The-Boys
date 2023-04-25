@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour {
 	public GameObject dialogCanvas;
 	public GameObject puzzleCanvas;
 	public GameObject fadeCanvas;
+	public DialogManager dialogManager;
 
 	public static UIManager Instance {
 		get { return instance; }

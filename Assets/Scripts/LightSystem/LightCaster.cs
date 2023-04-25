@@ -23,9 +23,15 @@ public static class LightCaster {
 					}
 				} else {
 					Crystal crystal;
+					AIController ai;
+
 					if(hit.collider.gameObject.TryGetComponent(out crystal)) {
 						if(lightRay.color == crystal.color) {
 							crystal.Activate();
+						}
+					} else if(hit.collider.transform.parent.TryGetComponent(out ai)) {
+						if(!ai.burned) {
+							ai.AIBurned();
 						}
 					}
 				}

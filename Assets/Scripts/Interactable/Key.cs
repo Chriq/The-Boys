@@ -23,6 +23,6 @@ public class Key : MonoBehaviour, Interactable {
 		gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
 		dialog.text = $"You got the {sceneName} key.";
-		dialog.DisplayTextUI();
+		dialog.Interact();
 	}
 }
