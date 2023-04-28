@@ -23,6 +23,22 @@ public class InteractionController : MonoBehaviour {
 		}
 	}
 
+	public bool CheckForInteractable(Vector3 checkCell) {
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(checkCell + spriteOffset, 0.3f);
+		if(colliders != null && colliders.Length > 0) {
+			Interactable interactable;
+			foreach(Collider2D collider in colliders) {
+				if(collider.gameObject.TryGetComponent(out interactable)) {
+					if(collider.gameObject.name != "Block") {
+						return true;
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
 	public void RotateObject(Vector3 checkCell) {
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(checkCell, 0.3f);
 		if(colliders != null && colliders.Length > 0) {

@@ -26,6 +26,7 @@ public class CutSceneController : MonoBehaviour {
 	}
 
 	public void Execute() {
+		UIManager.Instance.interactionCanvas.SetActive(false);
 		StartCoroutine(SpwanEnemies());
     }
 

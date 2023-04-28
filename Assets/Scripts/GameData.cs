@@ -31,7 +31,8 @@ public class GameData : MonoBehaviour {
 				{"Bedroom", false },
 				{"Bathroom", false },
 				{"Basement", false },
-				{"Kitchen Fridge", false }
+				{"Kitchen Fridge", false },
+				{"QlJOLUNZLUE1MDI6IENhcnNvbiwgTWlsbGVyICYgU3RldmVucw==", false }
 			};
 
 			completedRooms = new Dictionary<string, bool> {
@@ -40,7 +41,8 @@ public class GameData : MonoBehaviour {
 				{"Kitchen", false },
 				{"Bedroom", false },
 				{"Bathroom", false },
-				{"Basement", false }
+				{"Basement", false },
+				{"QlJOLUNZLUE1MDI6IENhcnNvbiwgTWlsbGVyICYgU3RldmVucw==", false }
 			};
 
 			DontDestroyOnLoad(this);

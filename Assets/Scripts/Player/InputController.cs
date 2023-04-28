@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InputController : MonoBehaviour {
 
@@ -24,7 +25,17 @@ public class InputController : MonoBehaviour {
 				movementController.Move(input);
 			}
 		}
-		
+
+		if(interactionController.CheckForInteractable(movementController.currentPosition + movementController.currentDirection.normalized)
+		    && UIManager.Instance.interactionCanvas.GetComponent<CanvasGroup>().alpha == 0) {
+			UIManager.Instance.interactionCanvas.GetComponent<UIFade>().FadeIn();
+			UIManager.Instance.interactionCanvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
+		} else if(!interactionController.CheckForInteractable(movementController.currentPosition + movementController.currentDirection.normalized)
+			&& UIManager.Instance.interactionCanvas.GetComponent<CanvasGroup>().alpha == 1) {
+			UIManager.Instance.interactionCanvas.GetComponent<UIFade>().FadeOut();
+			UIManager.Instance.interactionCanvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
+		}
+
 		if(Input.GetKeyDown(KeyCode.E)) {
 			interactionController.Interact(movementController.transform.position + movementController.currentDirection);
 		} else if(Input.GetKeyDown(KeyCode.F)) {

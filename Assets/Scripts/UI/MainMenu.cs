@@ -38,11 +38,19 @@ public class MainMenu : MonoBehaviour {
 		line.color = new Color32(131, 39, 39, 255);
 		lines.Add(line);
 
-		line.text = "Ok fine, you'll be back at 2?";
+		line.text = "But what if someone or...something finds me?";
 		line.color = Color.white;
 		lines.Add(line);
 
-		line.text = "Yep, don't worry about it. See what kind of cool stuff you can find while you're there.";
+		line.text = "Come on, those are just stories. Look, if you're in trouble, just hide in a closet or something.";
+		line.color = new Color32(131, 39, 39, 255);
+		lines.Add(line);
+
+		line.text = "Ok fine.";
+		line.color = Color.white;
+		lines.Add(line);
+
+		line.text = "See what kind of cool stuff you can find while you're there.";
 		line.color = new Color32(131, 39, 39, 255);
 		lines.Add(line);
 

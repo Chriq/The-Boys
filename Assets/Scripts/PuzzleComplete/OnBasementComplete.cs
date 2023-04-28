@@ -7,11 +7,13 @@ public class OnBasementComplete : MonoBehaviour, OnRoomComplete {
 	public GameObject wallCollider;
 	public SpriteRenderer portalEffect;
 	public Light2D pentagramLight;
+	public GameObject portalBlock;
 
 	public void Execute() {
 		Destroy(wallCollider);
 		StartCoroutine(FadeCoroutine(0f, 1f, 1f));
 		StartCoroutine(LightCoroutine(0f, 0.4f, 1f));
+		portalBlock.AddComponent<DestroyObject>();
 	}
 
 	private IEnumerator FadeCoroutine(float start, float end, float duration) {
