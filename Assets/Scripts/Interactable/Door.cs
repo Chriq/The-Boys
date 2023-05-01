@@ -35,7 +35,7 @@ public class Door : MonoBehaviour, Interactable {
 			//GameData.Instance.lastRoomIn = SceneManager.GetActiveScene().name;
 			UIManager.Instance.fadeCanvas.GetComponent<UIFade>().FadeOutWithCallback(delegate {
 				SceneManager.LoadScene(sceneName);
-			});
+			}, 0.5f);
 		} else {
 			dialog.Interact();
 			audioPlayer.PlayAudio();

@@ -26,7 +26,7 @@ public class AIController : MonoBehaviour {
 			Vector3 playerPosition = player.GetComponent<MovementController>().currentPosition;
 			Vector3 dir = playerPosition - transform.position;
 
-			if(dir.magnitude < 1f) {
+			if(dir.magnitude < 0.25f) {
 				SceneManager.LoadScene("GameOver");
 			}
 
@@ -76,7 +76,7 @@ public class AIController : MonoBehaviour {
 	}
 
 	IEnumerator StopPursuit() {
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(5f);
 		burned = false;
 	}
 }
