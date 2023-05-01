@@ -50,7 +50,19 @@ public class MainMenu : MonoBehaviour {
 		line.color = Color.white;
 		lines.Add(line);
 
-		line.text = "See what kind of cool stuff you can find while you're there.";
+		line.text = "Legend has it that the sCaRY DeMOnS who live inside are afraid of light.";
+		line.color = new Color32(131, 39, 39, 255);
+		lines.Add(line);
+
+		line.text = "That's not funny.";
+		line.color = Color.white;
+		lines.Add(line);
+
+		line.text = "Hey, you're the one that believes in ghost stories.";
+		line.color = new Color32(131, 39, 39, 255);
+		lines.Add(line);
+
+		line.text = "Just hang out for a while and see what kind of cool stuff you can find while you're there.";
 		line.color = new Color32(131, 39, 39, 255);
 		lines.Add(line);
 

@@ -92,11 +92,11 @@ public class CutSceneController : MonoBehaviour {
 		line.color = new Color32(131, 39, 39, 255);
 		dialogList.Add(line);
 
-		line.text = "Oh, that's fair. My friends said this place was abandoned.";
+		line.text = "Oh, that's fair. My older brother said this place was abandoned.";
 		line.color = Color.white;
 		dialogList.Add(line);
 
-		line.text = "They challenged me to stay here till 2AM so I can join their club.";
+		line.text = "He and his friends challenged me to stay here till 2AM so I can hang out with them.";
 		line.color = Color.white;
 		dialogList.Add(line);
 
