@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementController : MonoBehaviour {
+public class FreeMovementController2D : MonoBehaviour {
 	public float speed;
 	public Animator animator;
-	public float animTime = 0f;
-
 	public Vector3 spriteOffset;
 	public SpriteRenderer sprite;
 
@@ -23,7 +21,7 @@ public class MovementController : MonoBehaviour {
 	}
 
 	public void Move(Vector2 input) {
-		if (!isMoving) {
+		if(!isMoving) {
 			if(input != Vector2.zero) {
 				currentDirection = input;
 
@@ -56,11 +54,7 @@ public class MovementController : MonoBehaviour {
 
 	IEnumerator MoveToCell(Vector3 targetPos) {
 		isMoving = true;
-		//animator.ForceStateNormalizedTime(animTime);
-		animator.SetFloat("motionTime", animTime);
 		while((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon) {
-			animTime += Time.deltaTime;
-			animator.SetFloat("motionTime", animTime);
 			transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
 			yield return null;
 		}
@@ -68,8 +62,6 @@ public class MovementController : MonoBehaviour {
 		transform.position = targetPos;
 		isMoving = false;
 		animator.SetBool("isMoving", isMoving);
-		//animTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-		animTime = animTime % 1f;
 	}
 
 	private void Interact(Vector3 checkPos) {

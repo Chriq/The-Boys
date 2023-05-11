@@ -27,7 +27,7 @@ public class Pushable : MonoBehaviour {
 	IEnumerator MoveToCell(Vector3 targetPos, float speed) {
 		isMoving = true;
 		while((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon) {
-			transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, targetPos, speed / 2f * Time.deltaTime);
 			yield return null;
 		}
 

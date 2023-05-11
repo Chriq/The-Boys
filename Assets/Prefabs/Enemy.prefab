@@ -277,10 +277,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa8dc1621ce09f4389617070e7b0ee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.2
+  speed: 1.5
   animator: {fileID: 2658471558265187397}
+  animTime: 0
   spriteOffset: {x: 0.5, y: -0.5, z: 0}
   sprite: {fileID: 2658471558265187396}
+  isMoving: 0
   currentPosition: {x: 0, y: 0, z: 0}
   currentDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &5494543716134143829

@@ -42,6 +42,11 @@ public class InputController : MonoBehaviour {
 			interactionController.ShineFlashlight(movementController.currentDirection);
 		}
 
+		if(Input.GetKey(KeyCode.F) && movementController.isMoving) {
+			interactionController.TurnOffFlashlight();
+			interactionController.ShineFlashlight(movementController.currentDirection);
+		}
+
 		if(Input.GetKeyUp(KeyCode.F)) {
 			interactionController.TurnOffFlashlight();
 		}
